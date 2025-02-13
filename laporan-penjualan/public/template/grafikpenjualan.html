@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafik Penjualan</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 200px;
+            background-color: #fff;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        .sidebar h1 {
+            color: orange;
+            font-size: 20px;
+        }
+
+        .sidebar button {
+            background-color: #800000;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Main content */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #800000;
+            height: 50px;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        select {
+            padding: 5px 10px;
+            background-color: #d9b3b3;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Dummy chart */
+        .chart {
+            width: 80%;
+            height: 300px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h1>Tel-U Cafe Purwokerto</h1>
+        <button>Data Penjualan</button>
+        <button>Data Barang</button>
+        <button>Grafik Penjualan</button>
+    </div>
+
+    <div class="main-content">
+        <div class="header"></div>
+
+        <h2>Grafik Penjualan</h2>
+        <div class="filter-container">
+            <label for="filter">Tampilkan:</label>
+            <select id="filter" onchange="updateChart()">
+                <option value="bulan">Bulan</option>
+                <option value="tahun">Tahun</option>
+            </select>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart" id="chart">Grafik Bulanan</div>
+        </div>
+    </div>
+
+    <script>
+        function updateChart() {
+            const filter = document.getElementById('filter').value;
+            const chart = document.getElementById('chart');
+
+            if (filter === 'bulan') {
+                chart.textContent = 'Grafik Bulanan';
+            } else {
+                chart.textContent = 'Grafik Tahunan';
+            }
+        }
+    </script>
+</body>
+
+</html>

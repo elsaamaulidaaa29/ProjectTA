@@ -1,0 +1,7 @@
+tabel database
+1. user
+2. password reset token
+3. failed jobs
+4. personal access token
+5. product
+6. sales
