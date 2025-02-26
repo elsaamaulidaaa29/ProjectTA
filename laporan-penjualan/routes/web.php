@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DataBarangController;
 use App\Http\Controllers\DataPenjualanController;
@@ -44,6 +45,8 @@ Route::get('/barang', [App\Http\Controllers\DataBarangController::class, 'index'
 Route::resource('barang', DataBarangController::class);
 
 Route::get('/grafikpenjualan', [App\Http\Controllers\DataPenjualanController::class, 'grafikPenjualan'])->name('grafik.penjualan');
+
+Route::resource('user', UserController::class);
 
 
 // Route::get('/grafik', [App\Http\Controllers\ProductsController::class, 'index'])->name('grafik.penjualan.produk');

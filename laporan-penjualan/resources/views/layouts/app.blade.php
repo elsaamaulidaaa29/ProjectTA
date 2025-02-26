@@ -34,7 +34,7 @@
 
 
                 <!-- Topbar -->
-                @include('layouts.partials.navbar')
+                @include('layouts.partials.navbar', ['user' => Auth::user()])
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
