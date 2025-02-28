@@ -95,15 +95,24 @@
             <span>Grafik Penjualan Produk</span></a>
     </li>
 
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('tables.index') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
-    </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="sidebar-heading">
+        Settings
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('roles.index') }}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Role</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('permissions.index') }}">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Permission</span></a>
+    </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

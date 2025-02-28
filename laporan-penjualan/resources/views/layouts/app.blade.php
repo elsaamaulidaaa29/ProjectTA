@@ -39,6 +39,9 @@
 
                 <!-- Begin Page Content -->
                 @yield('content')
+
+                @include('sweetalert::alert')
+
                 <!-- /.container-fluid -->
 
             </div>

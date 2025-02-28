@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
+// use App\Models\produk;
+// use App\Models\Barang;
 use Illuminate\Http\Request;
 
 class DataBarangController extends Controller
@@ -65,5 +66,11 @@ class DataBarangController extends Controller
     {
         $barang->delete();
         return redirect()->route('barang.index');
+    }
+    
+    public function grafikProduk()
+    {
+
+        return view('grafikproduk');
     }
 }

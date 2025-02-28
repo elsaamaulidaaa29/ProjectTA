@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleContoller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DataBarangController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DataPenjualanController;
 
 /*
@@ -46,7 +48,12 @@ Route::resource('barang', DataBarangController::class);
 
 Route::get('/grafikpenjualan', [App\Http\Controllers\DataPenjualanController::class, 'grafikPenjualan'])->name('grafik.penjualan');
 
+// Route::get('/grafikproduk', [App\Http\Controllers\DataBarangController::class, 'grafikProduk'])->name('grafik.produk');
+
 Route::resource('user', UserController::class);
+
+Route::resource('roles', RoleContoller::class);
+Route::resource('permissions', PermissionController::class);
 
 
 // Route::get('/grafik', [App\Http\Controllers\ProductsController::class, 'index'])->name('grafik.penjualan.produk');
