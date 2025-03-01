@@ -2,20 +2,61 @@
 
 
 @section('content')
-    <div class="container">
-        <h2>Edit Barang</h2>
-        <form>
-            <label for="nama">Nama Barang</label>
-            <input type="text" id="nama" placeholder="Masukkan Nama Barang">
+    <div class="container mt-4">
+        <div class="card shadow-lg">
+            <div class="card-header text-white" style="background-color: #7E1010; color: white">
+                <h4 class="text-center m-0">Edit Penjualan</h4>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('penjualan.update', $penjualan->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
 
-            <label for="terjual">Terjual</label>
-            <input type="text" id="terjual" placeholder="Jumlah Terjual">
+                    <!-- Pilih Nama Barang -->
+                    <div class="mb-3">
+                        <label for="barang_id" class="form-label">Nama Barang</label>
+                        <select name="barang_id" id="barang_id" class="form-control" required>
+                            @foreach ($barangs as $barang)
+                                <option value="{{ $barang->id }}"
+                                    {{ $barang->id == $penjualan->barang_id ? 'selected' : '' }}>
+                                    {{ $barang->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('barang_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-            <label for="tanggal">Tanggal</label>
-            <input type="date" id="tanggal">
+                    <!-- Input Jumlah Terjual -->
+                    <div class="mb-3">
+                        <label for="terjual" class="form-label">Jumlah Terjual</label>
+                        <input type="number" id="terjual" name="jumlah_terjual" class="form-control"
+                            placeholder="Jumlah Terjual" value="{{ $penjualan->jumlah_terjual }}" required>
+                        @error('jumlah_terjual')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-            <button type="submit">Edit</button>
-        </form>
+                    <!-- Input Tanggal -->
+                    <div class="mb-3">
+                        <label for="tanggal" class="form-label">Tanggal</label>
+                        <input type="date" id="tanggal" name="date" class="form-control"
+                            value="{{ $penjualan->date }}" required>
+                        @error('date')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Tombol Submit -->
+                    <div class="text-center">
+                        <button type="submit" class="btn px-4" style="background-color: #7E1010; color: white">
+                            Edit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 

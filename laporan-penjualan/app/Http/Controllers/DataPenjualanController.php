@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Penjualan;
+use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class DataPenjualanController extends Controller
 {
@@ -39,6 +41,9 @@ class DataPenjualanController extends Controller
         ]);
 
         Penjualan::create($request->all());
+
+        FacadesAlert::success('Success', 'Data penjualan berhasil ditambahkan!');
+
         return redirect()->route('penjualan.index');
     }
 
@@ -55,7 +60,9 @@ class DataPenjualanController extends Controller
      */
     public function edit(string $id)
     {
-        return view('data-penjualan.edit');
+        $penjualan = Penjualan::findOrFail($id);
+        $barangs = Barang::all(); // Ambil semua barang untuk dropdown
+        return view('data-penjualan.edit', compact('penjualan', 'barangs'));
     }
 
     /**
@@ -63,7 +70,22 @@ class DataPenjualanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'barang_id' => 'required|exists:barangs,id',
+            'jumlah_terjual' => 'required|integer|min:1',
+            'date' => 'required|date',
+        ]);
+
+        $penjualan = Penjualan::findOrFail($id);
+        $penjualan->update([
+            'barang_id' => $request->barang_id,
+            'jumlah_terjual' => $request->jumlah_terjual,
+            'date' => $request->date,
+        ]);
+
+        FacadesAlert::success('Success', 'Data penjualan berhasil diperbarui!');
+
+        return redirect()->route('penjualan.index');
     }
 
     /**
@@ -71,7 +93,10 @@ class DataPenjualanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $penjualan = Penjualan::findOrFail($id);
+        $penjualan->delete();
+
+        return redirect()->route('penjualan.index');
     }
 
     public function grafikPenjualan()

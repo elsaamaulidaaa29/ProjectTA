@@ -5,7 +5,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-black mb-3 text-center">Data Penjualan</h6>
-            <button type="button" class="btn btn-primary"
+            <button type="button" class="btn" style="background-color: #7E1010; color: white;"
                 onclick="window.location.href='{{ route('penjualan.create') }}'">Tambah</button>
         </div>
         <div class="card-body">
@@ -32,11 +32,13 @@
                                         class="btn btn-primary btn-circle">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('penjualan.destroy', $penjualan->id) }}" method="POST"
+                                    <form id="delete-form-{{ $penjualan->id }}"
+                                        action="{{ route('penjualan.destroy', $penjualan->id) }}" method="POST"
                                         style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-circle">
+                                        <button type="button" class="btn btn-danger btn-circle"
+                                            onclick="confirmDelete({{ $penjualan->id }})">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>

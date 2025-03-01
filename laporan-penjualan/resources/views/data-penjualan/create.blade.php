@@ -1,36 +1,45 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>Tambah Penjualan</h2>
-
-        <form action="{{ route('penjualan.store') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="barang_id">Nama Barang</label>
-                <select name="barang_id" id="barang_id" class="form-control">
-                    @foreach ($barangs as $barang)
-                        <option value="{{ $barang->id }}">{{ $barang->name }}</option>
-                    @endforeach
-                </select>
+    <div class="container mt-4">
+        <div class="card shadow-lg">
+            <div class="card-header text-white" style="background-color: #7E1010; color: white;">
+                <h4 class="text-center m-0">Tambah Penjualan</h4>
             </div>
-            <div class="form-group">
-                <label for="jumlah_terjual">Jumlah Terjual</label>
-                <input type="number" name="jumlah_terjual" id="jumlah_terjual" class="form-control" required>
+            <div class="card-body">
+                <form action="{{ route('penjualan.store') }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="barang_id" class="form-label">Nama Barang</label>
+                        <select name="barang_id" id="barang_id" class="form-control" required>
+                            <option value="" disabled selected>Pilih Barang</option>
+                            @foreach ($barangs as $barang)
+                                <option value="{{ $barang->id }}">{{ $barang->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="jumlah_terjual" class="form-label">Jumlah Terjual</label>
+                        <input type="number" name="jumlah_terjual" id="jumlah_terjual" class="form-control"
+                            placeholder="Masukkan Jumlah" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tanggal" class="form-label">Tanggal</label>
+                        <input type="date" name="date" id="tanggal" class="form-control" required>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn text-white px-4" style="background-color: #7E1010; ">Tambahkan</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="tanggal">Tanggal</label>
-                <input type="date" name="date" id="tanggal" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Tambahkan</button>
-        </form>
-
-
-
+        </div>
     </div>
 @endsection
 
-@section('style')
+{{-- @section('style')
     <style>
         h2 {
             margin-bottom: 20px;
@@ -79,4 +88,4 @@
             background: #ccc;
         }
     </style>
-@endsection
+@endsection --}}

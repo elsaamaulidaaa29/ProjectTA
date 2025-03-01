@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 // use App\Models\produk;
-// use App\Models\Barang;
+use App\Models\Barang;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DataBarangController extends Controller
 {
@@ -30,7 +31,19 @@ class DataBarangController extends Controller
      */
     public function store(Request $request)
     {
-        Barang::create($request->only(['name', 'stock', 'date']));
+        $request->validate([
+            'name'  => 'required|string|max:255',
+            'stock' => 'required|integer|min:0',
+            'date'  => 'required|date',
+        ]);
+
+        Barang::create([
+            'name'  => $request->name,
+            'stock' => $request->stock,
+            'date'  => $request->date,
+        ]);
+
+        Alert::success('Success', 'Data Barang Berhasil Ditambahkan');
         return redirect()->route('barang.index');
     }
 
@@ -55,7 +68,20 @@ class DataBarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        $barang->update($request->only(['name', 'stock']));
+        $request->validate([
+            'name'  => 'required|string|max:255',
+            'stock' => 'required|integer|min:0',
+            'date'  => 'required|date',
+        ]);
+
+        $barang->update([
+            'name'  => $request->name,
+            'stock' => $request->stock,
+            'date'  => $request->date,
+        ]);
+
+        Alert::success('Success', 'Data Barang Berhasil Diubah');
+
         return redirect()->route('barang.index');
     }
 
@@ -67,7 +93,7 @@ class DataBarangController extends Controller
         $barang->delete();
         return redirect()->route('barang.index');
     }
-    
+
     public function grafikProduk()
     {
 
