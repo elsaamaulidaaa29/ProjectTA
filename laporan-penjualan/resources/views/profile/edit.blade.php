@@ -6,8 +6,15 @@
         <div class="profile-img">&#128100;</div>
         <div class="name">{{ $user->name }}</div>
         <div class="button-profile">
-            <button class="button">{{ $user->jabatan }}</button>
-            <button class="button">{{ $user->username }}</button>
+            <button class="button">{{ $user->email }}</button>
+            @if (!empty($user->roles) && $user->roles->count() > 0)
+                @foreach ($user->roles as $role)
+                    <button class="button">{{ $role->name }}</button>
+                @endforeach
+            @else
+                <span class="badge bg-black">No roles assigned</span>
+            @endif
+
             <button class="button">********</button> {{-- Jangan tampilkan password langsung --}}
         </div>
     </div>
@@ -16,21 +23,21 @@
 @section('style')
     <style>
         /* body {
-                                                                    display: flex;
-                                                                    justify-content: center;
-                                                                    align-items: center;
-                                                                    height: 100vh;
-                                                                    background-color: #222;
-                                                                    margin: 0;
-                                                                } */
+                                                                                display: flex;
+                                                                                justify-content: center;
+                                                                                align-items: center;
+                                                                                height: 100vh;
+                                                                                background-color: #222;
+                                                                                margin: 0;
+                                                                            } */
         /* .container {
-                                                                    background-color: white;
-                                                                    width: 300px;
-                                                                    padding: 20px;
-                                                                    border-radius: 10px;
-                                                                    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-                                                                    text-align: center;
-                                                                }  */
+                                                                                background-color: white;
+                                                                                width: 300px;
+                                                                                padding: 20px;
+                                                                                border-radius: 10px;
+                                                                                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+                                                                                text-align: center;
+                                                                            }  */
 
         .container-profile {
             text-align: center;
@@ -43,11 +50,11 @@
         }
 
         /* .back-button {
-                    text-align: left;
-                    font-size: 20px;
-                    cursor: pointer;
-                    font-weight: bold;
-                } */
+                                text-align: left;
+                                font-size: 20px;
+                                cursor: pointer;
+                                font-weight: bold;
+                            } */
 
         .profile-img {
             width: 80px;
