@@ -14,4 +14,8 @@ class Barang extends Model
         'stock',
         'date',
     ];
+
+    protected $casts = [
+        'date' => 'date', // Pastikan 'date' dikonversi ke tipe data Date
+    ];
 }

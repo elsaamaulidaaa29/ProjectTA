@@ -28,7 +28,7 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $penjualan->barang->name }}</td>
                                 <td>{{ $penjualan->jumlah_terjual }}</td>
-                                <td>{{ $penjualan->date }}</td>
+                                <td>{{ \Carbon\Carbon::parse($penjualan->date)->translatedFormat('d M Y') }}</td>
                                 <td>
                                     @can('edit-sale')
                                         <a href="{{ route('penjualan.edit', $penjualan->id) }}"

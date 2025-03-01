@@ -28,7 +28,7 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $barang->name }}</td>
                                 <td>{{ $barang->stock }}</td>
-                                <td>{{ $barang->created_at->format('Y-m-d') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($barang->date)->translatedFormat('d M Y') }}</td>
                                 <td>
                                     @can('edit-barang')
                                         <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-primary btn-circle">

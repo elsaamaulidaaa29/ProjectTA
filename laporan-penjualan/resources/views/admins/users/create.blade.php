@@ -1,85 +1,73 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">General Form Elements</h5>
+    <div class="container mt-4">
+        <div class="card shadow-lg">
+            <div class="card-header text-white text-center" style="background-color: #7E1010;">
+                <h4 class="m-0">Tambah User</h4>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('user.store') }}" method="POST">
+                    @csrf
 
-            <!-- General Form Elements -->
-            <form action="{{ route('user.store') }}" method="POST">
-                @csrf
-
-                <div class="row mb-3">
-                    <label for="name" class="col-sm-2 col-form-label">Name <span class="text-danger">*</span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" placeholder="Name"
-                            value="{{ old('name') }}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nama <span class="text-danger">*</span></label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Masukkan Nama"
+                            value="{{ old('name') }}" required>
+                        @error('name')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
-                </div>
 
-                {{-- <div class="row mb-3">
-                    <label for="username" class="col-sm-2 col-form-label">Username <span
-                            class="text-danger">*</span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="username" placeholder="Username"
-                            value="{{ old('username') }}">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="email" id="email" name="email" class="form-control"
+                            placeholder="Masukkan Email" value="{{ old('email') }}" required>
+                        @error('email')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
-                </div> --}}
 
-                <div class="row mb-3">
-                    <label for="email" class="col-sm-2 col-form-label">Email <span class="text-danger">*</span></label>
-                    <div class="col-sm-10">
-                        <input name="email" type="email" class="form-control" placeholder="Email"
-                            value="{{ old('email') }}"></input>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                        <input type="password" id="password" name="password" class="form-control"
+                            placeholder="Masukkan Password" required>
+                        @error('password')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
-                </div>
 
-                {{-- <div class="row mb-3">
-                    <label for="jabatan" class="col-sm-2 col-form-label">Jabatan <span class="text-danger">*</span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="jabatan" placeholder="Jabatan"
-                            value="{{ old('jabatan') }}">
+                    <div class="mb-3">
+                        <label for="password_confirmation" class="form-label">Konfirmasi Password <span
+                                class="text-danger">*</span></label>
+                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control"
+                            placeholder="Konfirmasi Password" required>
+                        @error('password_confirmation')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
-                </div> --}}
 
-
-                <div class="row mb-3">
-                    <label for="password" class="col-sm-2 col-form-label">Password <span
-                            class="text-danger">*</span></label>
-                    <div class="col-sm-10">
-                        <input name="password" type="password" class="form-control" placeholder="Password" required
-                            autocomplete="new-password" {{ old('password') }}></input>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="password-confirm" class="col-sm-2 col-form-label">Confirm Passowrd <span
-                            class="text-danger">*</span></label>
-                    <div class="col-sm-10">
-                        <input name="password_confirmation" type="password" placeholder="Confirm Password"
-                            class="form-control" required autocomplete="new-password" {{ old('password-confirm') }}></input>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="name" class="col-sm-2 col-form-label">Roles <span class="text-danger">*</span></label>
-                    <div class="col-sm-10">
-                        <select name="roles[]" class="form-control" multiple>
-                            <option value="">Select Roles</option>
+                    <div class="mb-3">
+                        <label for="roles" class="form-label">Roles <span class="text-danger">*</span></label>
+                        <select name="roles[]" id="roles" class="form-select" multiple required>
+                            <option value="">Pilih Roles</option>
                             @foreach ($roles as $id => $role)
                                 <option value="{{ $id }}">{{ $role }}</option>
                             @endforeach
                         </select>
+                        @error('roles')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
-                </div>
 
-
-
-                <button type="submit" class="btn btn-primary btn-block w-100">
-                    Simpan
-                </button>
-            </form><!-- End General Form Elements -->
-
+                    <div class="text-center">
+                        <button type="submit" class="btn px-4"
+                            style="background-color: #7E1010; color: white;">Simpan</button>
+                        <button type="button" class="btn btn-light-secondary px-4"
+                            onclick="window.history.back();">Cancel</button>
+                    </div>
+                </form><!-- End Form -->
+            </div>
         </div>
     </div>
 @endsection
