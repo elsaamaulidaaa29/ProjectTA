@@ -38,7 +38,7 @@
                         <label for="tanggal" class="form-label">Tanggal</label>
                         <input type="date" id="tanggal" name="date"
                             class="form-control @error('date') is-invalid @enderror"
-                            value="{{ old('date', $barang->date) }}" required>
+                            value="{{ old('date', $barang->formatted_date) }}">
                         @error('date')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

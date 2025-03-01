@@ -35,7 +35,8 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 
     Route::resource('barang', DataBarangController::class);
 
-    Route::get('/grafikpenjualan', [App\Http\Controllers\DataPenjualanController::class, 'grafikPenjualan'])->name('grafik.penjualan');
+    Route::get('/grafik-penjualan', [App\Http\Controllers\DataPenjualanController::class, 'grafikPenjualan'])->name('grafik.penjualan');
+    Route::get('/grafik-produk', [App\Http\Controllers\DataBarangController::class, 'grafikProduk'])->name('grafik.produk');
 
     // Route::get('/grafikproduk', [App\Http\Controllers\DataBarangController::class, 'grafikProduk'])->name('grafik.produk');
 

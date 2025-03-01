@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Barang;
 use App\Models\Penjualan;
-use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
+use Illuminate\Console\View\Components\Alert;
 use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class DataPenjualanController extends Controller
@@ -111,6 +112,25 @@ class DataPenjualanController extends Controller
     public function grafikPenjualan()
     {
 
-        return view('grafikpenjualan');
+        // Ambil data penjualan dari database, dikelompokkan berdasarkan bulan
+        $penjualan = Penjualan::selectRaw('DATE_FORMAT(date, "%Y-%m") as bulan, SUM(jumlah_terjual) as total')
+            ->where('date', '>=', Carbon::now()->subMonths(11)->startOfMonth()) // Ambil 12 bulan terakhir
+            ->groupBy('bulan')
+            ->orderBy('bulan', 'asc')
+            ->get();
+
+        // Buat array label bulan berdasarkan data yang ada di database
+        $labels = $penjualan->pluck('bulan')->map(function ($bulan) {
+            return Carbon::parse($bulan)->translatedFormat('F Y'); // Format bulan dalam bahasa Indonesia
+        });
+
+        // Ambil total jumlah penjualan berdasarkan bulan
+        $data = $penjualan->pluck('total');
+
+        // Tambahkan nilai minimum dan maksimum untuk skala
+        $minValue = $data->min() > 0 ? 0 : $data->min();
+        $maxValue = $data->max() * 1.1; // Tambahkan 10% untuk ruang di atas
+
+        return view('grafikpenjualan', compact('labels', 'data', 'minValue', 'maxValue'));
     }
 }

@@ -107,6 +107,13 @@ class DataBarangController extends Controller
     public function grafikProduk()
     {
 
-        return view('grafikproduk');
+        // Ambil data stok produk dari database
+        $produk = Barang::select('name', 'stock')->orderBy('name', 'asc')->get();
+
+        // Ambil nama produk dan jumlah stok
+        $labels = $produk->pluck('name'); // Nama produk
+        $data = $produk->pluck('stock'); // Stok produk
+
+        return view('grafik-produk', compact('labels', 'data'));
     }
 }
