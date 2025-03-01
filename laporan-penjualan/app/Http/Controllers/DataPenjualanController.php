@@ -13,6 +13,15 @@ class DataPenjualanController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        // Apply permission middleware dynamically to resource actions
+        $this->middleware('check.permission:create-sale')->only(['create', 'store']);
+        $this->middleware('check.permission:view-sale')->only('index');
+        $this->middleware('check.permission:edit-sale')->only(['edit', 'update']);
+        $this->middleware('check.permission:delete-sale')->only(['destroy']);
+    }
     public function index()
     {
         $penjualans = Penjualan::with('barang')->get();

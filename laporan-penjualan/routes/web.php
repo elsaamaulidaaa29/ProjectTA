@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\DataBarangController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DataPenjualanController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,36 +25,33 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('products', ProductsController::class);
+Route::group(['middleware' => ['auth', 'isAdmin']], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+    Route::resource('/penjualan', DataPenjualanController::class);
+
+    Route::get('/barang', [App\Http\Controllers\DataBarangController::class, 'index'])->name('data.barang');
+
+    Route::resource('barang', DataBarangController::class);
+
+    Route::get('/grafikpenjualan', [App\Http\Controllers\DataPenjualanController::class, 'grafikPenjualan'])->name('grafik.penjualan');
+
+    // Route::get('/grafikproduk', [App\Http\Controllers\DataBarangController::class, 'grafikProduk'])->name('grafik.produk');
+
+    Route::resource('profile', ProfileController::class);
+
+    Route::resource('roles', RoleContoller::class);
+    Route::get('roles/{roleId}/give-permissions', [RoleContoller::class, 'addPermissionsToRole'])->name('roles.give-permission');
+    Route::put('roles/{roleId}/give-permissions', [RoleContoller::class, 'givePermissionsToRole'])->name('roles.update-permission');
+
+    Route::resource('permissions', PermissionController::class);
+    Route::resource('user', UserController::class);
+});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-// table page
-Route::get('/table', function () {
-    return view('table'); // Mengarahkan ke file resources/views/tables.blade.php
-});
-
-Route::get('/table', [App\Http\Controllers\TableController::class, 'index'])->name('tables.index');
-
-// Route::get('/harian', [App\Http\Controllers\DataPenjualanController::class, 'harian'])->name('data.harian');
-
-Route::resource('/penjualan', DataPenjualanController::class);
-
-Route::get('/barang', [App\Http\Controllers\DataBarangController::class, 'index'])->name('data.barang');
-
-Route::resource('barang', DataBarangController::class);
-
-Route::get('/grafikpenjualan', [App\Http\Controllers\DataPenjualanController::class, 'grafikPenjualan'])->name('grafik.penjualan');
-
-// Route::get('/grafikproduk', [App\Http\Controllers\DataBarangController::class, 'grafikProduk'])->name('grafik.produk');
-
-Route::resource('user', UserController::class);
-
-Route::resource('roles', RoleContoller::class);
-Route::resource('permissions', PermissionController::class);
 
 
 // Route::get('/grafik', [App\Http\Controllers\ProductsController::class, 'index'])->name('grafik.penjualan.produk');

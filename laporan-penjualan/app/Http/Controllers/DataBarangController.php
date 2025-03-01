@@ -12,6 +12,16 @@ class DataBarangController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        // Apply permission middleware dynamically to resource actions
+        $this->middleware('check.permission:create-barang')->only(['create', 'store']);
+        $this->middleware('check.permission:view-barang')->only('index');
+        $this->middleware('check.permission:edit-barang')->only(['edit', 'update']);
+        $this->middleware('check.permission:delete-barang')->only(['destroy']);
+    }
+
     public function index()
     {
         $barangs = Barang::all();

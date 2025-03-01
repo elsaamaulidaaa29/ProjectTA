@@ -29,17 +29,7 @@
         DATA MASUK
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    {{-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Data Penjualan</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 
-        </div>
-    </li> --}}
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('penjualan.index') }}">
@@ -48,30 +38,16 @@
     </li>
 
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('barang.index') }}">
-            <i class="fas fa-folder"></i>
-            <span>Data Barang</span></a>
-    </li>
+    @can('view-barang')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('barang.index') }}">
+                <i class="fas fa-folder"></i>
+                <span>Data Barang</span></a>
+        </li>
+    @endcan
 
 
-    <!-- Nav Item - Utilities Collapse Menu -->
-    {{-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-clipboard-list"></i>
-            <span>Data Barang</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">dihilangkan sj:</h6>
-                <a class="collapse-item" href="utilities-color.html">Input Barang</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
-            </div>
-        </div>
-    </li> --}}
+
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -98,21 +74,36 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
-    <div class="sidebar-heading">
-        Settings
-    </div>
+    @canany(['view-role', 'view-permission', 'view-user'])
+        <div class="sidebar-heading">
+            Settings
+        </div>
+    @endcanany
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('roles.index') }}">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Role</span></a>
-    </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('permissions.index') }}">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Permission</span></a>
-    </li>
+    @can('view-role')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('roles.index') }}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Role</span></a>
+        </li>
+    @endcan
+
+    @can('view-permission')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('permissions.index') }}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Permission</span></a>
+        </li>
+    @endcan
+
+    @can('view-user')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('user.index') }}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Users</span></a>
+        </li>
+    @endcan
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

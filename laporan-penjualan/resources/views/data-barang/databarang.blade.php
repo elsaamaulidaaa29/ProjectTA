@@ -5,8 +5,10 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-balck mb-3 text-center">Data Barang</h6>
-            <button type="button" class="btn text-white" style="background-color: #7E1010;"
-                onclick="window.location.href='{{ route('barang.create') }}'">Tambah</button>
+            @can('create-barang')
+                <button type="button" class="btn text-white" style="background-color: #7E1010;"
+                    onclick="window.location.href='{{ route('barang.create') }}'">Tambah</button>
+            @endcan
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -28,21 +30,26 @@
                                 <td>{{ $barang->stock }}</td>
                                 <td>{{ $barang->created_at->format('Y-m-d') }}</td>
                                 <td>
-                                    <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-primary btn-circle">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <form id="delete-form-{{ $barang->id }}"
-                                        action="{{ route('barang.destroy', $barang->id) }}" method="POST"
-                                        style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="btn btn-danger btn-circle"
-                                            onclick="confirmDelete({{ $barang->id }})">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    @can('edit-barang')
+                                        <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-primary btn-circle">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    @endcan
 
-                                    
+                                    @can('delete-barang')
+                                        <form id="delete-form-{{ $barang->id }}"
+                                            action="{{ route('barang.destroy', $barang->id) }}" method="POST"
+                                            style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger btn-circle"
+                                                onclick="confirmDelete({{ $barang->id }})">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
+
+
                                 </td>
                             </tr>
                         @endforeach

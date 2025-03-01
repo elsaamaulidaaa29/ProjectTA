@@ -4,8 +4,10 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-balck mb-3 text-center">Data Permissions</h6>
-            <button type="button" class="btn btn-primary"
-                onclick="window.location.href='{{ route('permissions.create') }}'">Tambah</button>
+            @can('create-permission')
+                <button type="button" class="btn" style="background-color: #7E1010; color: white"
+                    onclick="window.location.href='{{ route('permissions.create') }}'">Tambah</button>
+            @endcan
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -25,19 +27,25 @@
                                 <td>{{ $permission->id }}</td>
                                 <td>{{ $permission->name }}</td>
                                 <td>
-                                    <a href="{{ route('permissions.edit', $permission->id) }}"
-                                        class="btn btn-primary btn-circle">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST"
-                                        style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn icon btn-danger btn-circle"
-                                            onclick="return confirm('Are you sure you want to delete this brand?')">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    @can('edit-permission')
+                                        <a href="{{ route('permissions.edit', $permission->id) }}"
+                                            class="btn btn-primary btn-circle">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    @endcan
+
+                                    @can('delete-permission')
+                                        <form id="delete-form-{{ $permission->id }}"
+                                            action="{{ route('permissions.destroy', $permission->id) }}" method="POST"
+                                            style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn icon btn-danger btn-circle"
+                                                onclick="confirmDelete({{ $permission->id }})">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
