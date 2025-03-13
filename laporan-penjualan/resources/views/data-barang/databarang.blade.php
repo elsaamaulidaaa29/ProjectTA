@@ -17,7 +17,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Jumlah</th>
+                            {{-- <th>Jumlah</th> --}}
                             <th>Tanggal</th>
                             <th>Tindakan</th>
                         </tr>
@@ -27,7 +27,7 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $barang->name }}</td>
-                                <td>{{ $barang->stock }}</td>
+                                {{-- <td>{{ $barang->stock }}</td> --}}
                                 <td>{{ \Carbon\Carbon::parse($barang->date)->translatedFormat('d M Y') }}</td>
                                 <td>
                                     @can('edit-barang')

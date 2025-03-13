@@ -133,4 +133,20 @@ class DataPenjualanController extends Controller
 
         return view('grafikpenjualan', compact('labels', 'data', 'minValue', 'maxValue'));
     }
+
+    public function grafikPenjualanKeseluruhan()
+    {
+        // Ambil data penjualan berdasarkan nama produk
+        $penjualan = Penjualan::selectRaw('barang_id, SUM(jumlah_terjual) as total')
+            ->groupBy('barang_id')
+            ->with('barang')
+            ->get();
+
+        // Format data untuk Chart.js
+        $labels = $penjualan->pluck('barang.name');
+        $data = $penjualan->pluck('total');
+
+
+        return view('grafik-produk-all', compact('labels', 'data'));
+    }
 }

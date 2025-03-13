@@ -12,7 +12,7 @@ class Barang extends Model
 
     protected $fillable = [
         'name',
-        'stock',
+        // 'stock',
         'date',
     ];
 

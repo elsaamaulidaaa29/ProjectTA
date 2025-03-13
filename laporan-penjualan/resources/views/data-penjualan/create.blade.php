@@ -31,7 +31,8 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="btn text-white px-4" style="background-color: #7E1010; ">Tambahkan</button>
+                        <button type="submit" class="btn text-white px-4"
+                            style="background-color: #7E1010; ">Tambahkan</button>
                     </div>
                 </form>
             </div>

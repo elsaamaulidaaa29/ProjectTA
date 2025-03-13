@@ -23,7 +23,7 @@
                     </div>
 
                     <!-- Jumlah Terjual -->
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="terjual" class="form-label">Terjual</label>
                         <input type="number" id="terjual" name="stock"
                             class="form-control @error('stock') is-invalid @enderror" placeholder="Jumlah Terjual"
@@ -31,7 +31,7 @@
                         @error('stock')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <!-- Tanggal -->
                     <div class="mb-3">

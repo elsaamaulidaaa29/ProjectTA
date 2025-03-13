@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\produk;
+
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -43,13 +43,13 @@ class DataBarangController extends Controller
     {
         $request->validate([
             'name'  => 'required|string|max:255',
-            'stock' => 'required|integer|min:0',
+            // 'stock' => 'required|integer|min:0',
             'date'  => 'required|date',
         ]);
 
         Barang::create([
             'name'  => $request->name,
-            'stock' => $request->stock,
+            // 'stock' => $request->stock,
             'date'  => $request->date,
         ]);
 
@@ -80,13 +80,13 @@ class DataBarangController extends Controller
     {
         $request->validate([
             'name'  => 'required|string|max:255',
-            'stock' => 'required|integer|min:0',
+            // 'stock' => 'required|integer|min:0',
             'date'  => 'required|date',
         ]);
 
         $barang->update([
             'name'  => $request->name,
-            'stock' => $request->stock,
+            // 'stock' => $request->stock,
             'date'  => $request->date,
         ]);
 
@@ -104,16 +104,16 @@ class DataBarangController extends Controller
         return redirect()->route('barang.index');
     }
 
-    public function grafikProduk()
-    {
+    // public function grafikProduk()
+    // {
 
-        // Ambil data stok produk dari database
-        $produk = Barang::select('name', 'stock')->orderBy('name', 'asc')->get();
+    //     // Ambil data stok produk dari database
+    //     $produk = Barang::select('name', 'stock')->orderBy('name', 'asc')->get();
 
-        // Ambil nama produk dan jumlah stok
-        $labels = $produk->pluck('name'); // Nama produk
-        $data = $produk->pluck('stock'); // Stok produk
+    //     // Ambil nama produk dan jumlah stok
+    //     $labels = $produk->pluck('name'); // Nama produk
+    //     $data = $produk->pluck('stock'); // Stok produk
 
-        return view('grafik-produk', compact('labels', 'data'));
-    }
+    //     return view('grafik-produk', compact('labels', 'data'));
+    // }
 }

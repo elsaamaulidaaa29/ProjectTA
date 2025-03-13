@@ -8,6 +8,13 @@
             @can('create-sale')
                 <button type="button" class="btn" style="background-color: #7E1010; color: white;"
                     onclick="window.location.href='{{ route('penjualan.create') }}'">Tambah</button>
+                {{-- <button onclick="printLaporan()" class="btn btn-primary">
+                    <i class="fas fa-print"></i> Cetak Laporan</button> --}}
+                <form action="{{ url('/report/penjualan') }}" method="GET" target="_blank">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-print"></i> Cetak Laporan
+                    </button>
+                </form>
             @endcan
         </div>
         <div class="card-body">
@@ -55,5 +62,10 @@
                 </table>
             </div>
         </div>
+        <script>
+            function printLaporan() {
+                window.print();
+            }
+        </script>
     </div>
 @endsection

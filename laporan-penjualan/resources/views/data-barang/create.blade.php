@@ -15,11 +15,11 @@
                             placeholder="Masukkan Nama Barang" required>
                     </div>
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="stock" class="form-label">Stok</label>
                         <input type="number" id="stock" name="stock" class="form-control" placeholder="Jumlah Stok"
                             required>
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal</label>

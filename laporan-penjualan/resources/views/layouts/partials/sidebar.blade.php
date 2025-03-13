@@ -66,9 +66,9 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('grafik.produk') }}">
+        <a class="nav-link" href="{{ route('grafik.all') }}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Grafik Penjualan Produk</span></a>
+            <span>Grafik Penjualan Keseluruhan</span></a>
     </li>
 
     <!-- Divider -->
@@ -100,7 +100,7 @@
     @can('view-user')
         <li class="nav-item">
             <a class="nav-link" href="{{ route('user.index') }}">
-                <i class="fas fa-fw fa-cog"></i>
+                <i class="fas fa-fw fa-user"></i>
                 <span>Users</span></a>
         </li>
     @endcan
