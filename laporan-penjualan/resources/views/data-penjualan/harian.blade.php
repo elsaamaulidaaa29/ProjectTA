@@ -27,7 +27,10 @@
                     <input type="date" name="tanggal_akhir" class="form-control" value="{{ request('tanggal_akhir') }}">
                 </div>
                 <div class="col-md-3 d-flex align-items-end">
-                    <button type="submit" class="btn btn-success me-2">Filter</button>
+                    <button type="submit" class="btn btn-success me-2"
+                        style="background-color: #7E1010; color: white;">Filter</button>
+
+
                     <a href="{{ route('penjualan.index') }}" class="btn btn-secondary">Reset</a>
                 </div>
             </form>
@@ -41,6 +44,8 @@
                             <th>No</th>
                             <th>Nama Menu</th>
                             <th>Jumlah Terjual</th>
+                            <th>Harga</th>
+                            <th>Metode Pembayaran</th>
                             <th>Tanggal</th>
                             <th>Tindakan</th>
                         </tr>
@@ -51,6 +56,8 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $penjualan->barang->name }}</td>
                                 <td>{{ $penjualan->jumlah_terjual }}</td>
+                                <td>{{ $penjualan->harga }}</td>
+                                <td>{{ $penjualan->metode_pembayaran }}</td>
                                 <td>{{ \Carbon\Carbon::parse($penjualan->date)->translatedFormat('d M Y') }}</td>
                                 <td>
                                     @can('edit-sale')

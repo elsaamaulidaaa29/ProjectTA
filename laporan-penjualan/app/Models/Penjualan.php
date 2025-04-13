@@ -12,7 +12,9 @@ class Penjualan extends Model
     protected $fillable = [
         'barang_id',
         'jumlah_terjual',
-        'date'
+        'date',
+        'harga',
+        'metode_pembayaran'
     ];
 
     // Relasi dengan model Barang

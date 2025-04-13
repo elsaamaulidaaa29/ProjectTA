@@ -48,6 +48,31 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3">
+                        <label for="tanggal" class="form-label">Harga</label>
+                        <input type="text" id="harga" name="harga" class="form-control"
+                            value="{{ $penjualan->harga }}" required>
+                        @error('harga')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="metode_pembayaran" class="form-label">Metode Pembayaran</label>
+                        <select id="metode_pembayaran" name="metode_pembayaran" class="form-control" required>
+                            <option value="Cash" {{ $penjualan->metode_pembayaran == 'Cash' ? 'selected' : '' }}>Cash
+                            </option>
+                            <option value="QRIS" {{ $penjualan->metode_pembayaran == 'QRIS' ? 'selected' : '' }}>QRIS
+                            </option>
+                            <option value="Transfer" {{ $penjualan->metode_pembayaran == 'Transfer' ? 'selected' : '' }}>
+                                Transfer</option>
+                        </select>
+                        @error('metode_pembayaran')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
                     <!-- Tombol Submit -->
                     <div class="text-center">
                         <button type="submit" class="btn px-4" style="background-color: #7E1010; color: white">
@@ -55,22 +80,7 @@
                         </button>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="barang_id" class="form-label">Nama Menu</label>
-                        <select name="barang_id" id="barang_id" class="form-control" required>
-                            @foreach ($barangs as $barang)
-                                <option value="{{ $barang->id }}"
-                                    class="{{ $barang->is_active ? '' : 'disabled' }}"
-                                    {{ $barang->id == $penjualan->barang_id ? 'selected' : '' }}
-                                    {{ $barang->is_active ? '' : 'disabled' }}>
-                                    {{ $barang->name }} {{ $barang->is_active ? '' : '(Nonaktif)' }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('barang_id')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+
                 </form>
             </div>
         </div>

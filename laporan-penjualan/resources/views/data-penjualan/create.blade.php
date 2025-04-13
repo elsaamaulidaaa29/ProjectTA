@@ -30,6 +30,20 @@
                         <input type="date" name="date" id="tanggal" class="form-control" required>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="tanggal" class="form-label">Harga</label>
+                        <input type="text" name="harga" id="harga" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tanggal" class="form-label">Metode Pembayaran</label>
+                        <select name="metode_pembayaran" class="form-control" required>
+                            <option value="Cash">Cash</option>
+                            <option value="QRIS">QRIS</option>
+                            <option value="Transfer">Transfer</option>
+                        </select>
+                    </div>
+
                     <div class="text-center">
                         <button type="submit" class="btn text-white px-4"
                             style="background-color: #7E1010; ">Tambahkan</button>

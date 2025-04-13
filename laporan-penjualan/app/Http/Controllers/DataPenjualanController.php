@@ -55,6 +55,8 @@ class DataPenjualanController extends Controller
             'barang_id' => 'required',
             'jumlah_terjual' => 'required|integer',
             'date' => 'required|date',
+            'harga' => 'required|integer',
+            'metode_pembayaran' => 'required|string',
         ]);
 
         Penjualan::create($request->all());
@@ -91,6 +93,8 @@ class DataPenjualanController extends Controller
             'barang_id' => 'required|exists:barangs,id',
             'jumlah_terjual' => 'required|integer|min:1',
             'date' => 'required|date',
+            'harga' => 'required|integer',
+            'metode_pembayaran' => 'required|string',
         ]);
 
         $penjualan = Penjualan::findOrFail($id);
@@ -98,6 +102,8 @@ class DataPenjualanController extends Controller
             'barang_id' => $request->barang_id,
             'jumlah_terjual' => $request->jumlah_terjual,
             'date' => $request->date,
+            'harga' => $request->harga,
+            'metode_pembayaran' => $request->metode_pembayaran,
         ]);
 
         FacadesAlert::success('Success', 'Data penjualan berhasil diperbarui!');
