@@ -11,6 +11,7 @@ class Barang extends Model
     use HasFactory;
 
     protected $fillable = [
+        'is active',
         'name',
         // 'stock',
         'date',

@@ -10,9 +10,9 @@
                 <form action="{{ route('penjualan.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="barang_id" class="form-label">Nama Barang</label>
+                        <label for="barang_id" class="form-label">Nama Menu</label>
                         <select name="barang_id" id="barang_id" class="form-control" required>
-                            <option value="" disabled selected>Pilih Barang</option>
+                            <option value="" disabled selected>Pilih Menu</option>
                             @foreach ($barangs as $barang)
                                 <option value="{{ $barang->id }}">{{ $barang->name }}</option>
                             @endforeach
@@ -34,6 +34,19 @@
                         <button type="submit" class="btn text-white px-4"
                             style="background-color: #7E1010; ">Tambahkan</button>
                     </div>
+
+                    {{-- <div class="mb-3">
+                        <label for="barang_id" class="form-label">Nama Barang</label>
+                        <select name="barang_id" id="barang_id" class="form-control" required>
+                            <option value="" disabled selected>Pilih Barang</option>
+                            @foreach ($barangs as $barang)
+                                <option value="{{ $barang->id }}" {{ $barang->is_active ? '' : 'disabled' }}>
+                                    {{ $barang->name }}
+                                    {{ $barang->is_active ? '' : '(Nonaktif)' }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div> --}}
                 </form>
             </div>
         </div>

@@ -23,9 +23,16 @@ class DataPenjualanController extends Controller
         $this->middleware('check.permission:edit-sale')->only(['edit', 'update']);
         $this->middleware('check.permission:delete-sale')->only(['destroy']);
     }
-    public function index()
+    public function index(Request $request)
     {
-        $penjualans = Penjualan::with('barang')->get();
+        $query = Penjualan::with('barang');
+
+        // Cek jika ada filter tanggal
+        if ($request->filled('tanggal_awal') && $request->filled('tanggal_akhir')) {
+            $query->whereBetween('date', [$request->tanggal_awal, $request->tanggal_akhir]);
+        }
+
+        $penjualans = $query->orderBy('date', 'desc')->get();
 
         return view('data-penjualan.harian', compact('penjualans'));
     }

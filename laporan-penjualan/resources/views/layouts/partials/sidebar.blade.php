@@ -3,12 +3,12 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-            <img src="{{ asset('template/img/LOGO HATS.jpeg') }}" alt="Logo"
-                style="width: 50px; height: 50px; border-radius: 30px; margin-top: 20px">
-            <img src="public\template\img\LOGO HATS.jpeg" alt="">
+            <img src="{{ asset('template/img/LOGO TEL-U CAFE.jpeg') }}" alt="Logo"
+                style="width: 50px; height: 60px; border-radius: 30px; margin-top: 20px">
+            <img src="public\template\img\LOGO TEL-U CFAE.jpeg" alt="">
 
         </div>
-        <div class="sidebar-brand-text mx-3">HATS COFFEE <sup></sup></div>
+        <div class="sidebar-brand-text mx-3">TEL-U CAFE PURWOKERTO<sup></sup></div>
     </a>
 
     <!-- Divider -->
@@ -42,7 +42,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('barang.index') }}">
                 <i class="fas fa-folder"></i>
-                <span>Data Barang</span></a>
+                <span>Data Menu</span></a>
         </li>
     @endcan
 

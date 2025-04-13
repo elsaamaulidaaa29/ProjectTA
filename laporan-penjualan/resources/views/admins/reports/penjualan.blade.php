@@ -30,27 +30,29 @@
 </head>
 
 <body>
+    <img src="https://i.imgur.com/FydxmBs.jpeg" alt="Logo" width="100">
     <h2>Laporan Penjualan</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama Barang</th>
-                <th>Jumlah Terjual</th>
-                <th>Tanggal</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($penjualan as $index => $p)
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $p->barang->name ?? 'Tidak Ada' }}</td>
-                    <td>{{ $p->jumlah_terjual }}</td>
-                    <td>{{ $p->date }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <h3>HATS COFFEE<h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Menu</th>
+                        <th>Jumlah Terjual</th>
+                        <th>Tanggal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($penjualan as $index => $p)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $p->barang->name ?? 'Tidak Ada' }}</td>
+                            <td>{{ $p->jumlah_terjual }}</td>
+                            <td>{{ $p->date }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
 </body>
 
 </html>

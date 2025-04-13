@@ -8,25 +8,41 @@
             @can('create-sale')
                 <button type="button" class="btn" style="background-color: #7E1010; color: white;"
                     onclick="window.location.href='{{ route('penjualan.create') }}'">Tambah</button>
-                {{-- <button onclick="printLaporan()" class="btn btn-primary">
-                    <i class="fas fa-print"></i> Cetak Laporan</button> --}}
-                <form action="{{ url('/report/penjualan') }}" method="GET" target="_blank">
+
+                <form action="{{ url('/report/penjualan') }}" method="GET" target="_blank" class="d-inline">
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-print"></i> Cetak Laporan
                     </button>
                 </form>
             @endcan
+
+            {{-- Filter Rentang Tanggal --}}
+            <form method="GET" action="{{ route('penjualan.index') }}" class="mt-3 row g-2 align-items-center">
+                <div class="col-md-3">
+                    <label for="tanggal_awal" class="form-label">Dari Tanggal</label>
+                    <input type="date" name="tanggal_awal" class="form-control" value="{{ request('tanggal_awal') }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="tanggal_akhir" class="form-label">Sampai Tanggal</label>
+                    <input type="date" name="tanggal_akhir" class="form-control" value="{{ request('tanggal_akhir') }}">
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button type="submit" class="btn btn-success me-2">Filter</button>
+                    <a href="{{ route('penjualan.index') }}" class="btn btn-secondary">Reset</a>
+                </div>
+            </form>
         </div>
+
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="penjualanTable">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Barang</th>
+                            <th>Nama Menu</th>
                             <th>Jumlah Terjual</th>
                             <th>Tanggal</th>
-                            <th>Action</th>
+                            <th>Tindakan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,10 +78,5 @@
                 </table>
             </div>
         </div>
-        <script>
-            function printLaporan() {
-                window.print();
-            }
-        </script>
     </div>
 @endsection

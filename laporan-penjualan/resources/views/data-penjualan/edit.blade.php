@@ -14,7 +14,7 @@
 
                     <!-- Pilih Nama Barang -->
                     <div class="mb-3">
-                        <label for="barang_id" class="form-label">Nama Barang</label>
+                        <label for="barang_id" class="form-label">Nama Menu</label>
                         <select name="barang_id" id="barang_id" class="form-control" required>
                             @foreach ($barangs as $barang)
                                 <option value="{{ $barang->id }}"
@@ -53,6 +53,23 @@
                         <button type="submit" class="btn px-4" style="background-color: #7E1010; color: white">
                             Edit
                         </button>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="barang_id" class="form-label">Nama Menu</label>
+                        <select name="barang_id" id="barang_id" class="form-control" required>
+                            @foreach ($barangs as $barang)
+                                <option value="{{ $barang->id }}"
+                                    class="{{ $barang->is_active ? '' : 'disabled' }}"
+                                    {{ $barang->id == $penjualan->barang_id ? 'selected' : '' }}
+                                    {{ $barang->is_active ? '' : 'disabled' }}>
+                                    {{ $barang->name }} {{ $barang->is_active ? '' : '(Nonaktif)' }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('barang_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </form>
             </div>

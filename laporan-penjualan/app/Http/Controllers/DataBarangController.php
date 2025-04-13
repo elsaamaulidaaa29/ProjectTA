@@ -43,14 +43,15 @@ class DataBarangController extends Controller
     {
         $request->validate([
             'name'  => 'required|string|max:255',
-            // 'stock' => 'required|integer|min:0',
             'date'  => 'required|date',
+            'is_active' => 'required|boolean'
         ]);
 
         Barang::create([
             'name'  => $request->name,
-            // 'stock' => $request->stock,
+            'stock' => $request->stock,
             'date'  => $request->date,
+            'is_active' => $request->has('is_active'),
         ]);
 
         Alert::success('Success', 'Data Barang Berhasil Ditambahkan');
@@ -80,14 +81,15 @@ class DataBarangController extends Controller
     {
         $request->validate([
             'name'  => 'required|string|max:255',
-            // 'stock' => 'required|integer|min:0',
             'date'  => 'required|date',
+            'is_active' => 'nullable|boolean',
         ]);
 
         $barang->update([
             'name'  => $request->name,
-            // 'stock' => $request->stock,
+            'stock' => $request->stock,
             'date'  => $request->date,
+            'is_active' => $request->has('is_active'),
         ]);
 
         Alert::success('Success', 'Data Barang Berhasil Diubah');
@@ -104,16 +106,16 @@ class DataBarangController extends Controller
         return redirect()->route('barang.index');
     }
 
-    // public function grafikProduk()
-    // {
+    public function grafikProduk()
+    {
 
-    //     // Ambil data stok produk dari database
-    //     $produk = Barang::select('name', 'stock')->orderBy('name', 'asc')->get();
+        // Ambil data stok produk dari database
+        $produk = Barang::select('name', 'stock')->orderBy('name', 'asc')->get();
 
-    //     // Ambil nama produk dan jumlah stok
-    //     $labels = $produk->pluck('name'); // Nama produk
-    //     $data = $produk->pluck('stock'); // Stok produk
+        // Ambil nama produk dan jumlah stok
+        $labels = $produk->pluck('name'); // Nama produk
+        $data = $produk->pluck('stock'); // Stok produk
 
-    //     return view('grafik-produk', compact('labels', 'data'));
-    // }
+        return view('grafik-produk', compact('labels', 'data'));
+    }
 }

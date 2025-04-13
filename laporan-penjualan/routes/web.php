@@ -32,6 +32,9 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 
     Route::resource('/penjualan', DataPenjualanController::class);
 
+    Route::get('/penjualan', [DataPenjualanController::class, 'index'])->name('penjualan.index');
+
+
     Route::get('/barang', [App\Http\Controllers\DataBarangController::class, 'index'])->name('data.barang');
 
     Route::resource('barang', DataBarangController::class);
