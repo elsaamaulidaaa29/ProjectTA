@@ -20,7 +20,9 @@
                             {{-- <th>Jumlah</th> --}}
                             <th>Tanggal</th>
                             <th>Is Active</th>
-                            <th>Tindakan</th>
+                            @canany(['edit-barang', 'delete-barang'])
+                                <th>Tindakan</th>
+                            @endcanany
                         </tr>
                     </thead>
                     <tbody>
@@ -36,28 +38,30 @@
                                             {{ $barang->is_active ? 'checked' : '' }}>
                                     </div>
                                 </td>
-                                <td>
-                                    @can('edit-barang')
-                                        <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-primary btn-circle">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                    @endcan
+                                @canany(['edit-barang', 'delete-barang'])
+                                    <td>
+                                        @can('edit-barang')
+                                            <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-primary btn-circle">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        @endcan
 
-                                    @can('delete-barang')
-                                        <form id="delete-form-{{ $barang->id }}"
-                                            action="{{ route('barang.destroy', $barang->id) }}" method="POST"
-                                            style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="button" class="btn btn-danger btn-circle"
-                                                onclick="confirmDelete({{ $barang->id }})">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    @endcan
+                                        @can('delete-barang')
+                                            <form id="delete-form-{{ $barang->id }}"
+                                                action="{{ route('barang.destroy', $barang->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-danger btn-circle"
+                                                    onclick="confirmDelete({{ $barang->id }})">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        @endcan
 
 
-                                </td>
+                                    </td>
+                                @endcanany
                             </tr>
                         @endforeach
                     </tbody>

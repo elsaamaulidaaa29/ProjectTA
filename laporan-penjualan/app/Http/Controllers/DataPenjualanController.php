@@ -25,8 +25,9 @@ class DataPenjualanController extends Controller
     }
     public function index(Request $request)
     {
-        $query = Penjualan::with('barang');
-
+        $query = Penjualan::with(['barang' => function ($query) {
+            $query->where('is_active', true);
+        }]);
         // Cek jika ada filter tanggal
         if ($request->filled('tanggal_awal') && $request->filled('tanggal_akhir')) {
             $query->whereBetween('date', [$request->tanggal_awal, $request->tanggal_akhir]);
@@ -42,7 +43,7 @@ class DataPenjualanController extends Controller
      */
     public function create()
     {
-        $barangs = Barang::all();
+        $barangs = Barang::where('is_active', true)->get();
         return view('data-penjualan.create', compact('barangs'));
     }
 
@@ -80,7 +81,7 @@ class DataPenjualanController extends Controller
     public function edit(string $id)
     {
         $penjualan = Penjualan::findOrFail($id);
-        $barangs = Barang::all(); // Ambil semua barang untuk dropdown
+        $barangs = Barang::where('is_active', true)->get(); // Ambil semua barang untuk dropdown
         return view('data-penjualan.edit', compact('penjualan', 'barangs'));
     }
 

@@ -12,6 +12,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- Custom styles for this template -->
-<link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link href="{{ url('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
-<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link href="{{ url('template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
