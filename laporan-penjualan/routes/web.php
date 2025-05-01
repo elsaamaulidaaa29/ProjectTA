@@ -23,7 +23,7 @@ use App\Http\Controllers\DataPenjualanController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::group(['middleware' => ['auth', 'isAdmin']], function () {

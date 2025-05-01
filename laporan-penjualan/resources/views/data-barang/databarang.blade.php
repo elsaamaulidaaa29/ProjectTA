@@ -17,7 +17,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            {{-- <th>Jumlah</th> --}}
+                            <th>Harga</th>
                             <th>Tanggal</th>
                             <th>Is Active</th>
                             @canany(['edit-barang', 'delete-barang'])
@@ -30,7 +30,7 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $barang->name }}</td>
-                                {{-- <td>{{ $barang->stock }}</td> --}}
+                                <td>{{ number_format($barang->harga, 0, ' ') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($barang->date)->translatedFormat('d M Y') }}</td>
                                 <td>
                                     <div class="form-check form-switch">

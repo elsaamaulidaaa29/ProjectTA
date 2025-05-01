@@ -41,7 +41,7 @@
                             <th>No</th>
                             <th>Nama Menu</th>
                             <th>Jumlah Terjual</th>
-                            <th>Harga</th>
+                            <th>Total Harga</th>
                             <th>Metode Pembayaran</th>
                             <th>Tanggal</th>
                             @canany(['edit-sale', 'delete-sale'])
@@ -62,7 +62,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $penjualan->jumlah_terjual }}</td>
-                                <td>{{ $penjualan->harga }}</td>
+                                <td>{{ number_format($penjualan->total_harga, 0, ' ') }}</td>
                                 <td>{{ $penjualan->metode_pembayaran }}</td>
                                 <td>{{ \Carbon\Carbon::parse($penjualan->date)->translatedFormat('d M Y') }}</td>
                                 @canany(['edit-sale', 'delete-sale'])

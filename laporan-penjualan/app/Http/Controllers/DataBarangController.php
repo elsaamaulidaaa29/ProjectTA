@@ -44,7 +44,8 @@ class DataBarangController extends Controller
         $request->validate([
             'name'  => 'required|string|max:255',
             'date'  => 'required|date',
-            'is_active' => 'required|boolean'
+            'is_active' => 'required|boolean',
+            'harga' => 'required|numeric'
         ]);
 
         Barang::create([
@@ -52,6 +53,7 @@ class DataBarangController extends Controller
             'stock' => $request->stock,
             'date'  => $request->date,
             'is_active' => $request->has('is_active'),
+            'harga' => $request->harga
         ]);
 
         Alert::success('Success', 'Data Barang Berhasil Ditambahkan');
@@ -83,6 +85,7 @@ class DataBarangController extends Controller
             'name'  => 'required|string|max:255',
             'date'  => 'required|date',
             'is_active' => 'nullable|boolean',
+            'harga' => 'required|numeric'
         ]);
 
         $barang->update([
@@ -90,6 +93,7 @@ class DataBarangController extends Controller
             'stock' => $request->stock,
             'date'  => $request->date,
             'is_active' => $request->has('is_active'),
+            'harga' => $request->harga
         ]);
 
         Alert::success('Success', 'Data Barang Berhasil Diubah');

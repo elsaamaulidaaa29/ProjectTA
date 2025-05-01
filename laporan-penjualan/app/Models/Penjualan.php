@@ -14,12 +14,23 @@ class Penjualan extends Model
         'jumlah_terjual',
         'date',
         'harga',
-        'metode_pembayaran'
+        'metode_pembayaran',
+        'total_harga',
     ];
 
     // Relasi dengan model Barang
     public function barang()
     {
         return $this->belongsTo(Barang::class);
+    }
+
+    protected static function booted()
+    {
+        static::creating(function ($penjualan) {
+            $barang = Barang::find($penjualan->barang_id);
+            if ($barang) {
+                $penjualan->harga = $barang->harga; // ambil harga dari barang
+            }
+        });
     }
 }

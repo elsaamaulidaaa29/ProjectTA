@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="container mt-4">
+    {{-- <div class="container mt-4">
         <div class="card shadow-lg">
             <div class="card-header text-white" style="background-color: #7E1010; color: white">
                 <h4 class="text-center m-0">Edit Penjualan</h4>
@@ -84,7 +84,9 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+    @livewire('penjualan-form', ['penjualanId' => $penjualan->id])
 @endsection
 
 @section('style')

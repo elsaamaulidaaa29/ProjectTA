@@ -56,12 +56,18 @@ class DataPenjualanController extends Controller
             'barang_id' => 'required',
             'jumlah_terjual' => 'required|integer',
             'date' => 'required|date',
-            'harga' => 'required|integer',
             'metode_pembayaran' => 'required|string',
         ]);
 
-        Penjualan::create($request->all());
+        $barang = Barang::findOrFail($request->barang_id);
 
+        Penjualan::create([
+            'barang_id' => $request->barang_id,
+            'jumlah_terjual' => $request->jumlah_terjual,
+            'date' => $request->date,
+            'harga' => $barang->harga, // ambil dari barang
+            'metode_pembayaran' => $request->metode_pembayaran
+        ]);
         FacadesAlert::success('Success', 'Data penjualan berhasil ditambahkan!');
 
         return redirect()->route('penjualan.index');

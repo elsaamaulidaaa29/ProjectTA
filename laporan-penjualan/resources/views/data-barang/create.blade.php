@@ -26,10 +26,11 @@
                         <input type="date" name="date" id="tanggal" class="form-control">
                     </div>
 
-                    <div class="text-center">
-                        <button type="submit" class="btn text-white px-4"
-                            style="background-color: #7E1010;">Tambahkan</button>
+                    <div class="form-group">
+                        <label for="harga">Harga</label>
+                        <input type="number" name="harga" class="form-control" required>
                     </div>
+
 
                     <div class="mb-3">
                         <label class="form-label">Status</label>
@@ -42,6 +43,13 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+
+                    <div class="text-center">
+                        <button type="submit" class="btn text-white px-4"
+                            style="background-color: #7E1010;">Tambahkan</button>
+                    </div>
+
                 </form>
             </div>
         </div>

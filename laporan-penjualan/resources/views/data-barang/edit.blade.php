@@ -44,9 +44,13 @@
                         @enderror
                     </div>
 
-                    <div class="text-center">
-                        <button type="submit" class="btn px-4"
-                            style="background-color: #7E1010; color: white">Edit</button>
+                    <div class="form-group">
+                        <label for="harga">Harga</label>
+                        <input type="number" name="harga" class="form-control @error('harga') is-invalid @enderror"
+                            value="{{ old('harga', $barang->harga) }}" required>
+                        @error('harga')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
@@ -60,6 +64,13 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn px-4"
+                            style="background-color: #7E1010; color: white">Edit</button>
+                    </div>
+
+
                 </form>
             </div>
         </div>
